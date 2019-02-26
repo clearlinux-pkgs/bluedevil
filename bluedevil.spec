@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.15.1
-Release  : 13
-URL      : https://download.kde.org/stable/plasma/5.15.1/bluedevil-5.15.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.15.1/bluedevil-5.15.1.tar.xz
-Source99 : https://download.kde.org/stable/plasma/5.15.1/bluedevil-5.15.1.tar.xz.sig
+Version  : 5.15.2
+Release  : 14
+URL      : https://download.kde.org/stable/plasma/5.15.2/bluedevil-5.15.2.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.15.2/bluedevil-5.15.2.tar.xz
+Source99 : https://download.kde.org/stable/plasma/5.15.2/bluedevil-5.15.2.tar.xz.sig
 Summary  : Integrate the Bluetooth technology within KDE workspace and applications
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
@@ -79,14 +79,14 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.15.1
+%setup -q -n bluedevil-5.15.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550593060
+export SOURCE_DATE_EPOCH=1551213199
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -94,7 +94,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550593060
+export SOURCE_DATE_EPOCH=1551213199
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
 cp COPYING %{buildroot}/usr/share/package-licenses/bluedevil/COPYING
