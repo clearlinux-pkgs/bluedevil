@@ -6,7 +6,7 @@
 #
 Name     : bluedevil
 Version  : 5.15.4
-Release  : 16
+Release  : 17
 URL      : https://download.kde.org/stable/plasma/5.15.4/bluedevil-5.15.4.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.15.4/bluedevil-5.15.4.tar.xz
 Source99 : https://download.kde.org/stable/plasma/5.15.4/bluedevil-5.15.4.tar.xz.sig
@@ -24,6 +24,7 @@ BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : kded-dev
 BuildRequires : plasma-framework-dev
+BuildRequires : shared-mime-info
 
 %description
 BlueDevil runtime dependencies:
@@ -86,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554215892
+export SOURCE_DATE_EPOCH=1555315859
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -94,7 +95,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1554215892
+export SOURCE_DATE_EPOCH=1555315859
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
 cp COPYING %{buildroot}/usr/share/package-licenses/bluedevil/COPYING
