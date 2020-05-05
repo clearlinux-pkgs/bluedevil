@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.18.4.1
-Release  : 37
-URL      : https://download.kde.org/stable/plasma/5.18.4/bluedevil-5.18.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.18.4/bluedevil-5.18.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.18.4/bluedevil-5.18.4.1.tar.xz.sig
-Summary  : Integrate the Bluetooth technology within KDE workspace and applications
+Version  : 5.18.5
+Release  : 38
+URL      : https://download.kde.org/stable/plasma/5.18.5/bluedevil-5.18.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.18.5/bluedevil-5.18.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.18.5/bluedevil-5.18.5.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: bluedevil-bin = %{version}-%{release}
@@ -22,7 +22,9 @@ BuildRequires : bluez-qt-dev
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules shared-mime-info
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kded-dev
+BuildRequires : ki18n-dev
 BuildRequires : plasma-framework-dev
 
 %description
@@ -79,36 +81,35 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.18.4.1
-cd %{_builddir}/bluedevil-5.18.4.1
+%setup -q -n bluedevil-5.18.5
+cd %{_builddir}/bluedevil-5.18.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585684446
+export SOURCE_DATE_EPOCH=1588710795
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1585684446
+export SOURCE_DATE_EPOCH=1588710795
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
-cp %{_builddir}/bluedevil-5.18.4.1/COPYING %{buildroot}/usr/share/package-licenses/bluedevil/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/bluedevil-5.18.4.1/COPYING.LIB %{buildroot}/usr/share/package-licenses/bluedevil/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/bluedevil-5.18.5/COPYING %{buildroot}/usr/share/package-licenses/bluedevil/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/bluedevil-5.18.5/COPYING.LIB %{buildroot}/usr/share/package-licenses/bluedevil/01a6b4bf79aca9b556822601186afab86e8c4fbf
 pushd clr-build
 %make_install
 popd
