@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.19.4
-Release  : 42
-URL      : https://download.kde.org/stable/plasma/5.19.4/bluedevil-5.19.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.19.4/bluedevil-5.19.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.19.4/bluedevil-5.19.4.tar.xz.sig
+Version  : 5.20.0
+Release  : 43
+URL      : https://download.kde.org/stable/plasma/5.20.0/bluedevil-5.20.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.20.0/bluedevil-5.20.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.20.0/bluedevil-5.20.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0 GPL-3.0 LGPL-2.1
+License  : GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
 Requires: bluedevil-bin = %{version}-%{release}
 Requires: bluedevil-data = %{version}-%{release}
 Requires: bluedevil-lib = %{version}-%{release}
@@ -25,7 +25,6 @@ BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kded-dev
 BuildRequires : ki18n-dev
-BuildRequires : kirigami2-dev
 BuildRequires : plasma-framework-dev
 
 %description
@@ -82,15 +81,15 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.19.4
-cd %{_builddir}/bluedevil-5.19.4
+%setup -q -n bluedevil-5.20.0
+cd %{_builddir}/bluedevil-5.20.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1597628633
+export SOURCE_DATE_EPOCH=1602704537
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -106,16 +105,26 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1597628633
+export SOURCE_DATE_EPOCH=1602704537
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
-cp %{_builddir}/bluedevil-5.19.4/COPYING %{buildroot}/usr/share/package-licenses/bluedevil/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/bluedevil-5.19.4/COPYING.LIB %{buildroot}/usr/share/package-licenses/bluedevil/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/bluedevil-5.20.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
 %find_lang bluedevil
 %find_lang plasma_applet_org.kde.plasma.bluetooth
+%find_lang kcm_bluetooth
 
 %files
 %defattr(-,root,root,-)
@@ -131,9 +140,12 @@ popd
 /usr/share/applications/org.kde.bluedevilwizard.desktop
 /usr/share/bluedevilwizard/pin-code-database.xml
 /usr/share/knotifications5/bluedevil.notifyrc
-/usr/share/kservices5/bluedeviladapters.desktop
-/usr/share/kservices5/bluedevildevices.desktop
-/usr/share/kservices5/bluedevilglobal.desktop
+/usr/share/kpackage/kcms/kcm_bluetooth/contents/ui/Bluetooth.qml
+/usr/share/kpackage/kcms/kcm_bluetooth/contents/ui/Device.qml
+/usr/share/kpackage/kcms/kcm_bluetooth/contents/ui/General.qml
+/usr/share/kpackage/kcms/kcm_bluetooth/metadata.desktop
+/usr/share/kpackage/kcms/kcm_bluetooth/metadata.json
+/usr/share/kservices5/bluetooth.desktop
 /usr/share/kservices5/bluetooth.protocol
 /usr/share/kservices5/obexftp.protocol
 /usr/share/kservices5/plasma-applet-org.kde.plasma.bluetooth.desktop
@@ -145,7 +157,6 @@ popd
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/FullRepresentation.qml
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/Header.qml
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/MediaPlayerItem.qml
-/usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/SwitchButton.qml
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/Toolbar.qml
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/logic.js
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/metadata.desktop
@@ -154,9 +165,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/qt5/plugins/kcm_bluedeviladapters.so
-/usr/lib64/qt5/plugins/kcm_bluedevildevices.so
-/usr/lib64/qt5/plugins/kcm_bluedevilglobal.so
+/usr/lib64/qt5/plugins/kcms/kcm_bluetooth.so
 /usr/lib64/qt5/plugins/kf5/kded/bluedevil.so
 /usr/lib64/qt5/plugins/kio_bluetooth.so
 /usr/lib64/qt5/plugins/kio_obexftp.so
@@ -165,9 +174,15 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/bluedevil/01a6b4bf79aca9b556822601186afab86e8c4fbf
-/usr/share/package-licenses/bluedevil/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/bluedevil/20079e8f79713dce80ab09774505773c926afa2a
+/usr/share/package-licenses/bluedevil/2a638514c87c4923c0570c55822620fad56f2a33
+/usr/share/package-licenses/bluedevil/3c3d7573e137d48253731c975ecf90d74cfa9efe
+/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
+/usr/share/package-licenses/bluedevil/757b86330df80f81143d5916b3e92b4bcb1b1890
+/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
+/usr/share/package-licenses/bluedevil/e712eadfab0d2357c0f50f599ef35ee0d87534cb
 
-%files locales -f bluedevil.lang -f plasma_applet_org.kde.plasma.bluetooth.lang
+%files locales -f bluedevil.lang -f plasma_applet_org.kde.plasma.bluetooth.lang -f kcm_bluetooth.lang
 %defattr(-,root,root,-)
 
