@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xEC94D18F7F05997E (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.22.1
-Release  : 51
-URL      : https://download.kde.org/stable/plasma/5.22.1/bluedevil-5.22.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.22.1/bluedevil-5.22.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.22.1/bluedevil-5.22.1.tar.xz.sig
+Version  : 5.22.5
+Release  : 52
+URL      : https://download.kde.org/stable/plasma/5.22.5/bluedevil-5.22.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.22.5/bluedevil-5.22.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.22.5/bluedevil-5.22.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -81,44 +81,44 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.22.1
-cd %{_builddir}/bluedevil-5.22.1
+%setup -q -n bluedevil-5.22.5
+cd %{_builddir}/bluedevil-5.22.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623804293
+export SOURCE_DATE_EPOCH=1630965342
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623804293
+export SOURCE_DATE_EPOCH=1630965342
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/2a638514c87c4923c0570c55822620fad56f2a33
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/bluedevil-5.22.1/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/2a638514c87c4923c0570c55822620fad56f2a33
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/GPL-3.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/6091db0aead0d90182b93d3c0d09ba93d188f907
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/bluedevil/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluedevil/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/bluedevil-5.22.5/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluedevil/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -148,7 +148,6 @@ popd
 /usr/share/kservices5/bluetooth.desktop
 /usr/share/kservices5/bluetooth.protocol
 /usr/share/kservices5/obexftp.protocol
-/usr/share/kservices5/plasma-applet-org.kde.plasma.bluetooth.desktop
 /usr/share/metainfo/org.kde.plasma.bluetooth.appdata.xml
 /usr/share/mime-packages/bluedevil-mime.xml
 /usr/share/plasma/plasmoids/org.kde.plasma.bluetooth/contents/ui/BluetoothApplet.qml
