@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.26.4
-Release  : 77
-URL      : https://download.kde.org/stable/plasma/5.26.4/bluedevil-5.26.4.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.4/bluedevil-5.26.4.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.4/bluedevil-5.26.4.tar.xz.sig
+Version  : 5.26.5
+Release  : 78
+URL      : https://download.kde.org/stable/plasma/5.26.5/bluedevil-5.26.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.5/bluedevil-5.26.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.5/bluedevil-5.26.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -25,6 +25,9 @@ BuildRequires : extra-cmake-modules shared-mime-info
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kirigami2-dev
 BuildRequires : plasma-framework-dev
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 BlueDevil runtime dependencies:
@@ -88,31 +91,31 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.26.4
-cd %{_builddir}/bluedevil-5.26.4
+%setup -q -n bluedevil-5.26.5
+cd %{_builddir}/bluedevil-5.26.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1669815226
+export SOURCE_DATE_EPOCH=1673290092
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1669815226
+export SOURCE_DATE_EPOCH=1673290092
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
 cp %{_builddir}/bluedevil-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/bluedevil/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -180,6 +183,8 @@ popd
 /usr/share/doc/HTML/en/kcontrol/bluedevil/list-remove.png
 /usr/share/doc/HTML/en/kcontrol/bluedevil/network-connect.png
 /usr/share/doc/HTML/en/kcontrol/bluedevil/network-disconnect.png
+/usr/share/doc/HTML/es/kcontrol/bluedevil/index.cache.bz2
+/usr/share/doc/HTML/es/kcontrol/bluedevil/index.docbook
 /usr/share/doc/HTML/it/kcontrol/bluedevil/index.cache.bz2
 /usr/share/doc/HTML/it/kcontrol/bluedevil/index.docbook
 /usr/share/doc/HTML/nl/kcontrol/bluedevil/index.cache.bz2
