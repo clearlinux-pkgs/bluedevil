@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : bluedevil
-Version  : 5.27.6
-Release  : 87
-URL      : https://download.kde.org/stable/plasma/5.27.6/bluedevil-5.27.6.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.6/bluedevil-5.27.6.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.6/bluedevil-5.27.6.tar.xz.sig
+Version  : 5.27.7
+Release  : 88
+URL      : https://download.kde.org/stable/plasma/5.27.7/bluedevil-5.27.7.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.7/bluedevil-5.27.7.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.7/bluedevil-5.27.7.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1 LGPL-3.0
@@ -92,15 +92,15 @@ locales components for the bluedevil package.
 
 
 %prep
-%setup -q -n bluedevil-5.27.6
-cd %{_builddir}/bluedevil-5.27.6
+%setup -q -n bluedevil-5.27.7
+cd %{_builddir}/bluedevil-5.27.7
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1687282193
+export SOURCE_DATE_EPOCH=1690905559
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -133,7 +133,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1687282193
+export SOURCE_DATE_EPOCH=1690905559
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluedevil
 cp %{_builddir}/bluedevil-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/bluedevil/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
