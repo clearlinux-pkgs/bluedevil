@@ -9,7 +9,7 @@
 #
 Name     : bluedevil
 Version  : 6.2.5
-Release  : 117
+Release  : 118
 URL      : https://download.kde.org/stable/plasma/6.2.5/bluedevil-6.2.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/6.2.5/bluedevil-6.2.5.tar.xz
 Source1  : https://download.kde.org/stable/plasma/6.2.5/bluedevil-6.2.5.tar.xz.sig
